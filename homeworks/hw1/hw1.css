@@ -1,0 +1,71 @@
+body {
+    margin: 0px;
+}
+
+.logo {
+    margin-right: 10px;
+}
+
+.header {
+    margin-bottom: 7px;
+    font-family: "Arial Black";
+    color: white;
+    border: azure;
+    background-color: red;
+    display: flex;
+    font-size: 25px;
+}
+
+.headerText {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.description1 {
+    display: inline-block;
+    inline: block;
+    width: 16%;
+    font-size: 15px;
+    font-weight: 900;
+}
+
+.description2 {
+    display: inline-block;
+    inline: block;
+    width: 22%;
+    font-size: 14px;
+    font-family: Bahnschrift;
+    font-weight: 100;
+}
+
+.description3 {
+    columns: 2 15px;
+    font-size: 15px;
+    font-family: Bahnschrift;
+    font-weight: 100;
+}
+
+.paper {
+    float: left;
+}
+
+.paperRight {
+    float: right;
+}
+
+.boldText {
+    font-family: "Arial Black";
+    color: red;
+    font-weight: 100;
+    text-shadow: 4px 6px 2px black;
+    font-size: 138px;
+    line-height: 70%;
+}
+
+img {
+    border-color: red;
+    border-radius: 30px;
+}
