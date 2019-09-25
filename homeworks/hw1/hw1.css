@@ -1,5 +1,5 @@
 .paper {
-    width: 900px;
+    width: 875px;
     margin: 0 auto;
 }
 
@@ -25,6 +25,8 @@
     float: right;
     height: 315px;
     margin-right: 10px;
+    margin-left: 10px;
+}
 
 body {
     margin: 0px;
@@ -35,9 +37,11 @@ body {
     color: black;
     margin-left: 10px;
     font-family: 'Orbitron', sans-serif;
+    font-size: 27px;
 }
 
 .header {
+    margin-top: 7px;
     margin-bottom: 7px;
     font-family: "Arial Black";
     color: white;
@@ -62,7 +66,7 @@ body {
     font-weight: 900;
     font-style: italic;
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .description2 {
@@ -70,13 +74,24 @@ body {
     font-family: Bahnschrift;
     font-weight: 100;
     margin-top: 7px;
-    margin-right: 6px;
+    margin-right: 10px;
 }
 
 .description3 {
     font-size: 14px;
     font-family: Bahnschrift;
     font-weight: 100;
+    width: 450px;
+    margin-left: 10px;
+}
+.description4 {
+    font-size: 14px;
+    font-family: Bahnschrift;
+    font-weight: 100;
+    width: 450px;
+    float: right;
+    margin-left: 15px;
+    margin-right: 5px;
 }
 P::first-letter {
     color: white;
@@ -86,7 +101,8 @@ P::first-letter {
     font-family: Bahnschrift;
     float: left;
     height: 14px;
-    margin-right: 4px;
+    margin-right: 5px;
+    margin-left: 10px;
 }
 
 .paper-right {
@@ -102,7 +118,8 @@ P::first-letter {
     line-height: 70%;
     float: left;
     margin-right: 20px;
-    margin-top: 5px;
+    margin-top: 10px;
+    margin-bottom: 25px;
 }
 
 img {
@@ -117,11 +134,16 @@ img {
 }
 .eight {
     font-family: Ebrima;
-    position: relative;
-    top: 7px; left: -6px;
+    display: block;
     color: white;
+    position: relative;
+    /*top: -26px; left: -6px;*/
     background-color: red;
     font-weight: 900;
     font-size: 60px;
     white-space: pre-wrap;
+    float: left;
+    margin-right: 7px;
+    margin-top: 5px;
+    margin-left: -8px;
 }
