@@ -1,9 +1,28 @@
+.paper {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.block1 {
+    width: 60%;
+    float: left;
+    margin-right: 10px;
+}
+
+.block1 > img {
+    float: right;
+    height: 315px;
+}
+
 body {
     margin: 0px;
 }
 
 .logo {
     margin-right: 10px;
+    color: black;
+    margin-left: 10px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .header {
@@ -11,7 +30,6 @@ body {
     font-family: "Arial Black";
     color: white;
     border: azure;
-    background-color: red;
     display: flex;
     font-size: 25px;
 }
@@ -22,20 +40,15 @@ body {
     width: 100%;
     padding-left: 50px;
     padding-right: 50px;
+    background-color: red;
 }
 
 .description1 {
-    display: inline-block;
-    inline: block;
-    width: 16%;
-    font-size: 15px;
     font-weight: 900;
+    font-style: italic;
 }
 
 .description2 {
-    display: inline-block;
-    inline: block;
-    width: 22%;
     font-size: 14px;
     font-family: Bahnschrift;
     font-weight: 100;
@@ -48,24 +61,26 @@ body {
     font-weight: 100;
 }
 
-.paper {
-    float: left;
-}
-
 .paperRight {
     float: right;
 }
 
-.boldText {
+.bold-text {
     font-family: "Arial Black";
     color: red;
     font-weight: 100;
     text-shadow: 4px 6px 2px black;
     font-size: 138px;
     line-height: 70%;
+    float: left;
+    margin-right: 20px;
 }
 
 img {
     border-color: red;
     border-radius: 30px;
+}
+.my-frame {
+    outline: 2px solid #000;
+    border: 4px solid #fff;
 }
