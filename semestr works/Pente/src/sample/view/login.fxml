@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.LoginController">
+   <children>
+      <ImageView fitHeight="372.0" fitWidth="410.0" layoutX="14.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/thumb-1920-294430.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="usernameInputField" layoutX="440.0" layoutY="177.0" prefHeight="53.0" prefWidth="218.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="passwordField" layoutX="440.0" layoutY="279.0" prefHeight="53.0" prefWidth="218.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="signInButton" layoutX="495.0" layoutY="350.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="107.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Войти">
+         <font>
+            <Font name="Segoe UI Semilight" size="22.0" />
+         </font>
+         <effect>
+            <DropShadow color="#87ddff" height="72.4" radius="36.1925" width="74.37" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="label" layoutX="210.0" layoutY="25.0" text="АВТОРИЗАЦИЯ" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="41.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="440.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя пользователя:" wrappingWidth="191.2218017578125">
+         <font>
+            <Font name="Segoe UI Light" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="440.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль:">
+         <font>
+            <Font name="Segoe UI Light" size="23.0" />
+         </font>
+      </Text>
+      <Button fx:id="signUpButton" layoutX="462.0" layoutY="398.0" mnemonicParsing="false" style="-fx-background-color: invisible;" text="Зарегистрироваться" textFill="#75c1ff">
+         <font>
+            <Font name="Segoe UI Light" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>

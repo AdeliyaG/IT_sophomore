@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.SignUpController">
+   <children>
+      <Label fx:id="label" layoutX="217.0" layoutY="29.0" text="РЕГИСТРАЦИЯ" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="41.0" />
+         </font>
+      </Label>
+      <Button fx:id="signUpButton" layoutX="62.0" layoutY="357.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="224.0" style="-fx-background-color: white; -fx-background-radius: 30;" text="Зарегистрироваться">
+         <font>
+            <Font name="Segoe UI Semilight" size="20.0" />
+         </font>
+         <effect>
+            <DropShadow color="#87ddff" height="72.4" radius="36.1925" width="74.37" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField fx:id="usernameInputField" layoutX="48.0" layoutY="190.0" prefHeight="53.0" prefWidth="251.0">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="passwordField" layoutX="48.0" layoutY="284.0" prefHeight="53.0" prefWidth="251.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </PasswordField>
+      <Text fill="WHITE" layoutX="48.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя пользователя:" wrappingWidth="207.33333333333343">
+         <font>
+            <Font name="Segoe UI Light" size="23.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="48.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль:">
+         <font>
+            <Font name="Segoe UI Light" size="23.0" />
+         </font>
+      </Text>
+      <RadioButton fx:id="waterRadioButton" layoutX="383.0" layoutY="154.0" mnemonicParsing="false" text="Вода" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="16.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="earthRadioButton" layoutX="383.0" layoutY="307.0" mnemonicParsing="false" text="Земля" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="16.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="fireRadioButton" layoutX="545.0" layoutY="154.0" mnemonicParsing="false" text="Огонь" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="16.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="airRadioButton" layoutX="543.0" layoutY="307.0" mnemonicParsing="false" text="Воздух" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Light" size="16.0" />
+         </font>
+      </RadioButton>
+      <Text fill="WHITE" layoutX="414.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Выберите стихию:" wrappingWidth="186.55517578125">
+         <font>
+            <Font name="Segoe UI Light" size="23.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="359.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/water.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="535.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/fire.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="119.0" fitWidth="128.0" layoutX="359.0" layoutY="338.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/earth.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="119.0" fitWidth="120.0" layoutX="535.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/air.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
