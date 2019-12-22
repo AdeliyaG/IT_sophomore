@@ -1,15 +1,20 @@
 package sample.controllers;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginController {
+    StageController stageController = new StageController();
 
     @FXML
     private ResourceBundle resources;
@@ -34,11 +39,8 @@ public class LoginController {
 
     @FXML
     void initialize() {
-        assert usernameInputField != null : "fx:id=\"usernameInputField\" was not injected: check your FXML file 'login.fxml'.";
-        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'login.fxml'.";
-        assert signInButton != null : "fx:id=\"signInButton\" was not injected: check your FXML file 'login.fxml'.";
-        assert label != null : "fx:id=\"label\" was not injected: check your FXML file 'login.fxml'.";
-        assert signUpButton != null : "fx:id=\"signUpButton\" was not injected: check your FXML file 'login.fxml'.";
+        stageController.stageControllerLogic(signUpButton, "signUp");
+        stageController.stageControllerLogic(signInButton, "mainWindow");
 
     }
 }

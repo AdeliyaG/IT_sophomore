@@ -6,6 +6,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -58,18 +59,21 @@
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="choose" />
+         </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="earthRadioButton" layoutX="383.0" layoutY="307.0" mnemonicParsing="false" text="Земля" textFill="WHITE">
+      <RadioButton fx:id="earthRadioButton" layoutX="383.0" layoutY="307.0" mnemonicParsing="false" text="Земля" textFill="WHITE" toggleGroup="$choose">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="fireRadioButton" layoutX="545.0" layoutY="154.0" mnemonicParsing="false" text="Огонь" textFill="WHITE">
+      <RadioButton fx:id="fireRadioButton" layoutX="545.0" layoutY="154.0" mnemonicParsing="false" text="Огонь" textFill="WHITE" toggleGroup="$choose">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="airRadioButton" layoutX="543.0" layoutY="307.0" mnemonicParsing="false" text="Воздух" textFill="WHITE">
+      <RadioButton fx:id="airRadioButton" layoutX="543.0" layoutY="307.0" mnemonicParsing="false" text="Воздух" textFill="WHITE" toggleGroup="$choose">
          <font>
             <Font name="Segoe UI Light" size="16.0" />
          </font>
@@ -99,5 +103,13 @@
             <Image url="@../assets/air.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="backButton" layoutX="13.0" layoutY="451.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" style="-fx-background-color: invisible;" text="Назад" textFill="#75c1ff">
+         <font>
+            <Font name="Segoe UI Light" size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
