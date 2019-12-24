@@ -35,8 +35,6 @@ public class GameController {
     @FXML
     private AnchorPane gameField;
 
-    private Image fishka;
-
     @FXML
     void initialize() {
         int initX = 27;
@@ -56,6 +54,7 @@ public class GameController {
                     int buttonX = (int) button.getLayoutX();
                     int buttonY = (int) button.getLayoutY();
                     button.setStyle("-fx-background-color: #42aaff; -fx-background-radius: 30px;");
+                    //потом передаем ход сопернику бат хау
                 });
 
                 gameField.getChildren().add(button);

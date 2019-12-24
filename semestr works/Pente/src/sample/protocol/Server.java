@@ -79,7 +79,6 @@ public class Server {
         public void run() {
             try {
                 // получем входной поток для конкретного клиента
-
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
                     for (ClientHandler client : clients) {

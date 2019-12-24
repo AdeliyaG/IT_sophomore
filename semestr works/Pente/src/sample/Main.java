@@ -10,14 +10,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/game.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/mainWindow.fxml"));
         primaryStage.setTitle("Pente");
         primaryStage.centerOnScreen();
         primaryStage.setScene(new Scene(root, 700, 500));
-        primaryStage.setResizable(false);
         primaryStage.show();
-
-
     }
 
 

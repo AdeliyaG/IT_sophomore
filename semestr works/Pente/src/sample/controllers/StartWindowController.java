@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import sample.Main;
 
 public class StartWindowController {
     StageController stageController = new StageController();
@@ -31,6 +32,5 @@ public class StartWindowController {
     @FXML
     void initialize() {
         stageController.stageControllerLogic(loginButton, "login");
-
     }
 }

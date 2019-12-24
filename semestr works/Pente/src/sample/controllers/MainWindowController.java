@@ -35,7 +35,7 @@ public class MainWindowController {
 
     @FXML
     void initialize() {
-        stageController.stageControllerLogic(gameButton, "game");
+        stageController.stageControllerLogic(gameButton, "choose");
         stageController.stageControllerLogic(rulesButton, "rules");
         stageController.stageControllerLogic(exitButton, "sample");
     }
