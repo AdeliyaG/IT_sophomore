@@ -1,6 +1,8 @@
 package ru.itis.semestrwork.trello.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @Table(name = "card")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,5 +26,6 @@ public class Card {
     private List<Item> items;
 
     @ManyToOne
+    @JsonIgnore
     private Board boardID;
 }

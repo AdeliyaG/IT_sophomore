@@ -1,5 +1,6 @@
 package ru.itis.semestrwork.trello.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,12 +25,14 @@ public class User {
 
     private String username;
     private String email;
+
     private String hashPassword;
 
     @ManyToMany
+    @JoinTable(name = "user_board_rel",
+            joinColumns = { @JoinColumn(name = "user_id") },
+            inverseJoinColumns = { @JoinColumn(name = "board_id") })
+    @JsonIgnore
     private List<Board> boards;
 
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
 }

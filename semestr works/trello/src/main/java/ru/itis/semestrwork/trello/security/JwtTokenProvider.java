@@ -6,7 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,14 +14,11 @@ import org.springframework.stereotype.Component;
 import ru.itis.semestrwork.trello.dto.SignInDto;
 import ru.itis.semestrwork.trello.entity.User;
 
-import javax.crypto.SecretKey;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Component
-public class JwtTokenProvider {
+public class JwtTokenProvider implements AuthenticationProvider {
 
     @Value("${jwt.secret}")
     private String secret;
@@ -30,22 +27,6 @@ public class JwtTokenProvider {
 
     public JwtTokenProvider(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
-    }
-
-
-    public Optional<Authentication> authenticate(HttpServletRequest servletRequest, String token) throws AuthenticationException {
-        Claims claims;
-        try {
-            claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-        } catch (Exception e) {
-            throw new AuthenticationCredentialsNotFoundException("Your token is invalid");
-        }
-
-        User user = new User();
-        user.setId(claims.get("id", Long.class));
-        user.setUsername(claims.get("username", String.class));
-
-        return Optional.of(new UsernamePasswordAuthenticationToken(user, "", user.getAuthorities()));
     }
 
     public String createToken(SignInDto userData, User user) {
@@ -61,5 +42,31 @@ public class JwtTokenProvider {
                     .signWith(SignatureAlgorithm.HS256, secret)
                     .compact();
         } else throw new AccessDeniedException("Wrong data");
+    }
+
+    @Override
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+        String token = authentication.getName();
+
+        Claims claims;
+        try {
+            claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+        } catch (Exception e) {
+            throw new AuthenticationCredentialsNotFoundException("Your token is invalid");
+        }
+
+        UserDetailsImpl userDetails = UserDetailsImpl.builder()
+                .userID(claims.get("id", Long.class))
+                .username(claims.get("username", String.class))
+                .build();
+
+        authentication.setAuthenticated(true);
+        ((JwtAuthentication)authentication).setUserDetails(userDetails);
+        return authentication;
+    }
+
+    @Override
+    public boolean supports(Class<?> aClass) {
+        return false;
     }
 }

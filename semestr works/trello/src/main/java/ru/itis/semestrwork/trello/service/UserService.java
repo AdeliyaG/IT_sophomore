@@ -38,7 +38,7 @@ public class UserService {
                     .hashPassword(passwordEncoder.encode(userData.getPassword()))
                     .build();
             userRepository.save(user);
-        }
+        } else throw new AccessDeniedException("User with this username is already exist");
     }
 
 

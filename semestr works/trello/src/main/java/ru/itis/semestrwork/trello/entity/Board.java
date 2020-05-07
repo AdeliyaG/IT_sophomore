@@ -1,6 +1,8 @@
 package ru.itis.semestrwork.trello.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @Table(name = "board")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,10 +22,14 @@ public class Board {
 
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Archive archive;
 
-    @ManyToMany //?is that ok? todo
+    @ManyToMany
+    @JoinTable(name = "user_board_rel",
+            joinColumns = { @JoinColumn(name = "board_id") },
+            inverseJoinColumns = { @JoinColumn(name = "user_id") })
+    @JsonIgnore
     private List<User> participants;
 
     @OneToMany(mappedBy = "boardID")
