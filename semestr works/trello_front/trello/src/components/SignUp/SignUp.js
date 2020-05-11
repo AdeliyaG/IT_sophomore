@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import NavbarAnon from "../NavbarAnon/NavbarAnon";
+import api from "../../axios/api-anon";
 
 const style = {
     bg: {
@@ -14,29 +15,64 @@ const style = {
     input: {
         width: 250 + "px"
     }
-}
+};
 
-export default function SignUp() {
+export default function SignUp(props) {
+
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    function submitHandler(event) {
+        event.preventDefault();
+
+        api.post("/signUp", {
+            username: username,
+            email: email,
+            password: password
+        }).then((response) => {
+            if (response.status === 200) {
+               window.location = "/signIn"
+            } else {
+                alert("Bad response")
+            }
+        });
+
+        setUsername('');
+        setEmail('');
+        setPassword('');
+    }
+
     return (
         <>
             <NavbarAnon/>
             <div style={style.bg}>
                 <div className="d-flex justify-content-center pt-5 pl-2">
-                    <form action="/signUp" method="POST">
+                    <form onSubmit={submitHandler}>
                         <div className="form-group" style={style.input}>
                             <label htmlFor="loginInput" className="col-form-label font-weight-bold">Имя
                                 пользователя</label>
                             <input type="text" className="form-control shadow-lg" id="loginInput"
-                                   placeholder="Login" required/>
+                                   placeholder="Login" required
+                                   value={username}
+                                   onChange={event => setUsername(event.target.value)}
+                            />
 
                             <label htmlFor="loginInput" className="col-form-label font-weight-bold">Email</label>
                             <input type="email" className="form-control shadow-lg" id="loginInput"
-                                   placeholder="Email" required/>
+                                   placeholder="Email" required
+                                   value={email}
+                                   onChange={event => setEmail(event.target.value)}
+                            />
 
                             <label htmlFor="passwordInput"
                                    className="col-form-label font-weight-bold">Пароль</label>
                             <input type="password" className="form-control shadow-lg" id="passwordInput"
-                                   placeholder="Password" required/>
+                                   placeholder="Password" required
+                                   value={password}
+                                   onChange={event => setPassword(event.target.value)}
+                            />
+
                             <small id="passwordHelpBlock" className="form-text text-center">
                                 Пароль должен содержать не менее 8 символов, цифры и заглавные буквы.
                             </small>

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import NavbarAnon from "../NavbarAnon/NavbarAnon";
+import api from "../../axios/api-anon";
 
 const style = {
     bg: {
@@ -19,24 +20,52 @@ const style = {
 }
 
 export default function SignIn() {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    function submitHandler(event) {
+        event.preventDefault();
+
+        api.post("/signIn", {
+            username: username,
+            password: password
+        }).then((response) => {
+            if (response.status === 200) {
+                sessionStorage.setItem("token", response.data.token);
+                window.location = "/"
+            } else {
+                alert("Bad response")
+            }
+        });
+
+        setUsername('');
+        setPassword('');
+    }
+
     return (
         <>
             <NavbarAnon/>
             <div style={style.bg}>
                 <div className="d-flex justify-content-center pt-5 pl-3">
-                    <form action="/signIn" method="POST">
+                    <form onSubmit={submitHandler}>
                         <div className="form-group" style={style.input}>
                             <label htmlFor="loginInput" className="col-form-label text-white font-weight-bold">Имя
                                 пользователя</label>
                             <input type="text" className="form-control shadow-lg" id="loginInput"
-                                   placeholder="Username"/>
+                                   placeholder="Username"
+                                   value={username}
+                                   onChange={event => setUsername(event.target.value)}
+                            />
                         </div>
 
                         <div className="form-group" style={style.input}>
                             <label htmlFor="passwordInput"
                                    className="col-form-label text-white font-weight-bold">Пароль</label>
                             <input type="password" className="form-control shadow-lg" id="passwordInput"
-                                   placeholder="Password"/>
+                                   placeholder="Password"
+                                   value={password}
+                                   onChange={event => setPassword(event.target.value)}
+                            />
                         </div>
                         <div className="form-group row text-center" style={style.input}>
                             <div className="col-9">
