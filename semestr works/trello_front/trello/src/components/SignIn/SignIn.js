@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import NavbarAnon from "../NavbarAnon/NavbarAnon";
 import api from "../../axios/api-anon";
+import {Redirect} from "react-router-dom";
 
 const style = {
     bg: {
@@ -31,8 +32,14 @@ export default function SignIn() {
             password: password
         }).then((response) => {
             if (response.status === 200) {
-                sessionStorage.setItem("token", response.data.token);
-                window.location = "/"
+                localStorage.setItem("token", response.data.token);
+                localStorage.setItem("currentUser", username);
+                if (response.data.role === "USER") {
+                    window.location = "/"
+                } else if(response.data.role === "ADMIN") {
+                    localStorage.setItem("role", response.data.role);
+                    window.location = "/admin"
+                }
             } else {
                 alert("Bad response")
             }
@@ -42,47 +49,51 @@ export default function SignIn() {
         setPassword('');
     }
 
-    return (
-        <>
-            <NavbarAnon/>
-            <div style={style.bg}>
-                <div className="d-flex justify-content-center pt-5 pl-3">
-                    <form onSubmit={submitHandler}>
-                        <div className="form-group" style={style.input}>
-                            <label htmlFor="loginInput" className="col-form-label text-white font-weight-bold">Имя
-                                пользователя</label>
-                            <input type="text" className="form-control shadow-lg" id="loginInput"
-                                   placeholder="Username"
-                                   value={username}
-                                   onChange={event => setUsername(event.target.value)}
-                            />
-                        </div>
-
-                        <div className="form-group" style={style.input}>
-                            <label htmlFor="passwordInput"
-                                   className="col-form-label text-white font-weight-bold">Пароль</label>
-                            <input type="password" className="form-control shadow-lg" id="passwordInput"
-                                   placeholder="Password"
-                                   value={password}
-                                   onChange={event => setPassword(event.target.value)}
-                            />
-                        </div>
-                        <div className="form-group row text-center" style={style.input}>
-                            <div className="col-9">
-                                <button type="submit" className="btn btn-primary shadow-lg">Войти через facebook
-                                </button>
-                            </div>
-                            <div className="col-3 p-0">
-                                <button type="submit"
-                                        className="btn btn-outline-light font-weight-bold shadow-lg">Войти
-                                </button>
+    if (localStorage.getItem("token") !== null) {
+        return <Redirect from="/signIn" to="/"/>
+    } else if (localStorage.getItem("token") == null) {
+        return (
+            <>
+                <NavbarAnon/>
+                <div style={style.bg}>
+                    <div className="d-flex justify-content-center pt-5 pl-3">
+                        <form onSubmit={submitHandler}>
+                            <div className="form-group" style={style.input}>
+                                <label htmlFor="loginInput" className="col-form-label text-white font-weight-bold">Имя
+                                    пользователя</label>
+                                <input type="text" className="form-control shadow-lg" id="loginInput"
+                                       placeholder="Username"
+                                       value={username}
+                                       onChange={event => setUsername(event.target.value)}
+                                />
                             </div>
 
-                        </div>
-                    </form>
+                            <div className="form-group" style={style.input}>
+                                <label htmlFor="passwordInput"
+                                       className="col-form-label text-white font-weight-bold">Пароль</label>
+                                <input type="password" className="form-control shadow-lg" id="passwordInput"
+                                       placeholder="Password"
+                                       value={password}
+                                       onChange={event => setPassword(event.target.value)}
+                                />
+                            </div>
+                            <div className="form-group row text-center" style={style.input}>
+                                <div className="col-9">
+                                    <button type="submit" className="btn btn-primary shadow-lg">Войти через facebook
+                                    </button>
+                                </div>
+                                <div className="col-3 p-0">
+                                    <button type="submit"
+                                            className="btn btn-outline-light font-weight-bold shadow-lg">Войти
+                                    </button>
+                                </div>
 
+                            </div>
+                        </form>
+
+                    </div>
                 </div>
-            </div>
-        </>
-)
+            </>
+        )
+    }
 }

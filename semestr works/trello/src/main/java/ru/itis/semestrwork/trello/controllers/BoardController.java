@@ -11,7 +11,7 @@ import ru.itis.semestrwork.trello.security.UserDetailsImpl;
 import ru.itis.semestrwork.trello.service.BoardService;
 
 @RestController
-@RequestMapping("/trello")
+@RequestMapping("/api/trello")
 public class BoardController {
 
     private final BoardService boardService;
@@ -20,20 +20,26 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-    @GetMapping("/board")
-    private ResponseEntity<?> getBoard(@RequestParam Long b) {
-        return ResponseEntity.ok(boardService.getBoard(b));
-    }
-
     @GetMapping("")
     private ResponseEntity<?> getBoards() {
         UserDetailsImpl user = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return ResponseEntity.ok(boardService.getListOfBoards(user.getUserId()));
     }
 
-    @GetMapping("/board={board_id}/archive")
-    private ResponseEntity<?> getBoardArchive(@PathVariable Long board_id) {
-        return ResponseEntity.ok(boardService.getBoardArchiveItems(board_id));
+    @GetMapping("/board")
+    private ResponseEntity<?> getBoard(@RequestParam Long b) {
+        return ResponseEntity.ok(boardService.getBoard(b));
+    }
+
+    @GetMapping("/boardParticipants")
+    private ResponseEntity<?> getParticipants(@RequestParam Long b) {
+        return ResponseEntity.ok(boardService.getParticipants(b));
+    }
+
+
+    @GetMapping("/boardArchive")
+    private ResponseEntity<?> getBoardArchive(@RequestParam Long b) {
+        return ResponseEntity.ok(boardService.getBoardArchiveItems(b));
     }
 
 
@@ -57,6 +63,8 @@ public class BoardController {
     @DeleteMapping("/board={board_id}/delete")
     public ResponseEntity<?> deleteBoard(@PathVariable Long board_id) throws java.nio.file.AccessDeniedException {
         boardService.deleteBoard(board_id);
-        return ResponseEntity.ok("Board" + board_id + "deleted");
+        return ResponseEntity.ok("Board " + board_id + " deleted");
     }
+
+    //todo probably добавить renameTable
 }

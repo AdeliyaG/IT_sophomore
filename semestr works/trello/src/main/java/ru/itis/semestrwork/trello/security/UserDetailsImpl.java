@@ -13,10 +13,11 @@ public class UserDetailsImpl implements UserDetails {
 
     private Long userID;
     private String username;
+    private String role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("creator");
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role);
         return Collections.singletonList(authority);
     }
 
@@ -52,5 +53,9 @@ public class UserDetailsImpl implements UserDetails {
 
     public Long getUserId() {
         return userID;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

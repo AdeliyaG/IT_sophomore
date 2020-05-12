@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import BoardHeader from "./BoardHeader";
-import Card from "../Card/Сard";
 import Navbar from "../NavbarAuth/Navbar";
+import api from "../../axios/api-auth";
 
 
 const style = {
@@ -23,34 +23,41 @@ const style = {
 
 export default function Board(props) {
 
-    const [cards, setCards] = useState([
-        {id: 1, name: "Card"}
-    ]);
+    const [board, setBoard] = useState([]);
 
-    function addNewCard() {
-        let newCard = {
-            id: Date.now(),
-            name: "newName"
-        };
-        setCards(cards.concat(newCard))
-    }
+    useEffect(() => {
+        api.get("/board" + props.location.search).then((response) => {
+            setBoard(response.data);
+        });
+    }, []);
 
     return (
         <>
-            <Navbar/>
+            <Navbar user={localStorage.getItem("currentUser")}/>
             <div className="overflow-auto" style={style.bg}>
-                <BoardHeader/>
+                <BoardHeader board={board}/>
                 <div className="container-fluid flex-nowrap">
                     <div id="cardContainer" className="row flex-nowrap ml-2" style={style.card}>
-                        {cards.map((card) =>
-                            <Card card={card} key={card.id}/>)}
+                        {/*{board.map((card) =>*/}
+                        {/*    <Card card={card} key={card.id}/>)}*/}
 
-                        <button className="btn btn-outline-primary w-25 h-25 mt-1" onClick={addNewCard}>Добавить колонку
+                        <button className="btn btn-outline-primary w-25 h-25 mt-1">Добавить колонку
                             +
                         </button>
+
+                        {/*onClick={addNewCard}*/}
                     </div>
                 </div>
             </div>
         </>
     )
+
+    // function addNewCard() {
+    //     let newCard = {
+    //         id: Date.now(),
+    //         name: "newName"
+    //     };
+    //     setCards(cards.concat(newCard))
+    // }
+
 }

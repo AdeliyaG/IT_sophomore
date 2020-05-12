@@ -1,17 +1,14 @@
 package ru.itis.semestrwork.trello.controllers;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.itis.semestrwork.trello.dto.SignInDto;
 import ru.itis.semestrwork.trello.dto.SignUpDto;
 import ru.itis.semestrwork.trello.dto.TokenDto;
 import ru.itis.semestrwork.trello.service.UserService;
 
 @RestController
-@RequestMapping("/trello")
+@RequestMapping("/api/trello")
 public class UserController {
 
     private final UserService userService;
@@ -32,5 +29,5 @@ public class UserController {
         return ResponseEntity.ok(resp);
     }
 
-    //todo authWithFacebook
+    //todo authWithSmth
 }

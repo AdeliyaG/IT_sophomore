@@ -6,7 +6,7 @@ import ru.itis.semestrwork.trello.dto.CardDto;
 import ru.itis.semestrwork.trello.service.CardService;
 
 @RestController
-@RequestMapping("/trello")
+@RequestMapping("/api/trello")
 public class CardController {
     private final CardService cardService;
 
@@ -24,5 +24,13 @@ public class CardController {
         return ResponseEntity.ok(cardService.createCard(cardDto, board_id));
     }
 
-    //todo rename
+//
+//    @DeleteMapping("/card={card_id}/delete")
+//    public ResponseEntity<?> deleteCard(@PathVariable Long card_id) {
+//        cardService.deleteCard(card_id);
+//        return ResponseEntity.ok("Card " + card_id + " deleted");
+//    }
+
+    //todo renameCard,
+    //todo probably deleteCard
 }

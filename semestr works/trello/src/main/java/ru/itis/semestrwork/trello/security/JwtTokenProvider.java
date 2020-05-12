@@ -34,7 +34,8 @@ public class JwtTokenProvider implements AuthenticationProvider {
 
         if (passwordEncoder.matches(userData.getPassword(), user.getHashPassword())) {
             claimData.put("id", user.getId());
-            claimData.put("email", user.getEmail());
+            claimData.put("username", user.getUsername());
+            claimData.put("role", user.getRole().name());
 
             return Jwts.builder()
                     .setSubject(user.getUsername())
@@ -58,6 +59,7 @@ public class JwtTokenProvider implements AuthenticationProvider {
         UserDetailsImpl userDetails = UserDetailsImpl.builder()
                 .userID(claims.get("id", Long.class))
                 .username(claims.get("username", String.class))
+                .role(claims.get("role",String.class))
                 .build();
 
         authentication.setAuthenticated(true);
@@ -66,7 +68,7 @@ public class JwtTokenProvider implements AuthenticationProvider {
     }
 
     @Override
-    public boolean supports(Class<?> aClass) {
-        return false;
+    public boolean supports(Class<?> authentication) {
+        return JwtAuthentication.class.equals(authentication);
     }
 }

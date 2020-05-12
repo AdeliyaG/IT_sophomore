@@ -9,7 +9,7 @@ import ru.itis.semestrwork.trello.service.ItemService;
 import java.nio.file.AccessDeniedException;
 
 @RestController
-@RequestMapping("/trello")
+@RequestMapping("/api/trello")
 public class ItemController {
     private final ItemService itemService;
 
@@ -50,6 +50,12 @@ public class ItemController {
     public ResponseEntity<?> archiveItem(@PathVariable Long item_id) {
         itemService.archiveItem(item_id);
         return ResponseEntity.ok("Archived");
+    }
+
+    @PutMapping("/item={item_id}/unarchive")                  //todo подумать как выводить в карточке только открытые итемы
+    public ResponseEntity<?> unarchiveItem(@PathVariable Long item_id) {
+        itemService.unarchiveItem(item_id);
+        return ResponseEntity.ok("Unarchived");
     }
 
     // todo addFile

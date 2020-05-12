@@ -9,7 +9,7 @@ export default function ArchiveList({archive, deleteArchivedItem}) {
                 <table className="table table-borderless">
                     <tbody>
                     {archive.map(item => {
-                        return <ArchivedItem item={item} key={item.id} deleteButtonHandler={deleteArchivedItem}/>
+                        return <ArchivedItem item={item} key={item.id} />
                     })}
                     </tbody>
                 </table>

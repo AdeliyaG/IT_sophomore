@@ -38,6 +38,10 @@ public class BoardService {
         return boardRepository.findBoardById(board_id);
     }
 
+    public List<User> getParticipants(Long board_id) {
+        return boardRepository.findBoardById(board_id).getParticipants();
+    }
+
     public Archive getBoardArchive(Long board_id) {
         return boardRepository.findBoardById(board_id).getArchive();
     }

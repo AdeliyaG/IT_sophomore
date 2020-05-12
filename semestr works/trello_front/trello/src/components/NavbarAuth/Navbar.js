@@ -9,7 +9,8 @@ const style = {
     }
 };
 
-export default function Navbar(props) {
+export default function Navbar({user, boards}) {
+
     return (
         <div>
             <nav className="navbar navbar-light" style={style.nav}>
@@ -20,8 +21,8 @@ export default function Navbar(props) {
                         <div className="list-group">
                             <h6 className="text-center">Доступные доски</h6>
 
-                            <BoardListButton name={"Board #1"}/>
-                            <BoardListButton name={"Board #2"}/>
+                            {boards.map((board) =>
+                                <BoardListButton board={board} key={board.id}/>)}
 
                         </div>
                     </div>
@@ -32,13 +33,13 @@ export default function Navbar(props) {
                 <div className="dropdown">
                     <button className="btn btn-primary" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        props.username
+                        {user}
                     </button>
                     <div className="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
                         <a className="dropdown-item" href="/profile">Профиль</a>
-                        <a className="dropdown-item" href="/myBoards">Список досок</a>
+                        <a className="dropdown-item" href="/">Список досок</a>
                         <div className="dropdown-divider"></div>
-                        <a className="dropdown-item" href="/logout">Выйти</a>
+                        <a className="dropdown-item" href="/logout" onClick={()=> localStorage.clear()}>Выйти</a>
                     </div>
                 </div>
             </nav>

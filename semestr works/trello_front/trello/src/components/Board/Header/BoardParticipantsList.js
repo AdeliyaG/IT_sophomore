@@ -9,7 +9,7 @@ export default function BoardParticipantsList({participants, deleteParticipants}
                 <table className="table table-borderless">
                     <tbody>
                     {participants.map(participant => {
-                        return <Participant participant={participant} key={participant.id} deleteButtonHandler={deleteParticipants}/>
+                        return <Participant participant={participant} key={participant.id}/>
                     })}
                     </tbody>
                 </table>

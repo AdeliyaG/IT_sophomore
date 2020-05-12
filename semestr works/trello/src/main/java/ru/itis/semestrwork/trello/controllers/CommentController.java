@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.itis.semestrwork.trello.service.CommentService;
 
 @RestController
-@RequestMapping("/trello")
+@RequestMapping("/api/trello")
 public class CommentController {
     private final CommentService commentService;
 

@@ -2,16 +2,7 @@ import React, {useState} from 'react';
 import ArchiveList from "./ArchiveList";
 import BoardParticipantsList from "./BoardParticipantsList";
 
-export default function Archive() {
-    const [archive, setArchive] = useState([
-        {id: 1, itemTitle: "item1", card:"card1", status: "ARCHIVED"},
-        {id: 2, itemTitle: "item2", card:"card1", status: "OPENED"},
-        {id: 3, itemTitle: "item2", card:"card2", status: "ARCHIVED"}
-    ]);
-
-    function deleteArchivedItem(id) {
-        setArchive(archive.filter(item => item.id !== id));
-    }
+export default function Archive({archive}) {
 
     return (
         <div>
@@ -22,8 +13,8 @@ export default function Archive() {
                 </button>
             </div>
             <div className="modal-body">
-                <ArchiveList archive={archive.filter(item => item.status !== "OPENED")}
-                             deleteArchivedItem={deleteArchivedItem}/>
+                <ArchiveList archive={archive.filter(item => item.itemStatus !== "OPENED")}/>
+                             {/*// deleteArchivedItem={deleteArchivedItem}/>*/}
             </div>
             <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Закрыть</button>

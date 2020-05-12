@@ -26,6 +26,7 @@ public class User {
     private String username;
     private String email;
 
+    @JsonIgnore
     private String hashPassword;
 
     @ManyToMany
@@ -35,4 +36,6 @@ public class User {
     @JsonIgnore
     private List<Board> boards;
 
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
 }

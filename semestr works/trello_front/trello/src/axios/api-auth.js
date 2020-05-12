@@ -4,8 +4,8 @@ export default axios.create({
     baseURL: "/api/trello",
     responseType: "json",
     headers: {
-        Authorization: sessionStorage.getItem("token") !== null
-            ? sessionStorage.getItem("token")
+        Authorization: localStorage.getItem("token") !== null
+            ? localStorage.getItem("token")
             : "",
     },
 });

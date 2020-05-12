@@ -16,9 +16,10 @@ export default function NavbarAdmin(props) {
                 </div>
 
                 <div className="row">
-                    <NavLink className="btn btn-outline-primary mr-3 text-white" to="/signIn" id="signInButton">
+                    <a className="btn btn-outline-primary mr-3 text-white" id="signInButton"
+                             href="/logout" onClick={()=> localStorage.clear()}>
                         Выйти
-                    </NavLink>
+                    </a>
                 </div>
             </nav>
         </div>

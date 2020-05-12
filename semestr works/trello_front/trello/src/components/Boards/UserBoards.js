@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Navbar from "../NavbarAuth/Navbar";
 import BoardListItem from "./BoardListItem";
 import api from "../../axios/api-auth";
+import {Redirect} from "react-router-dom";
 
 const style = {
     bg: {
@@ -17,12 +18,10 @@ const style = {
 export default function UserList() {
     const [boards, setBoards] = useState([]);
 
-    useEffect(() =>{
+    useEffect(() => {
         api.get("/").then((response) => {
-            setBoards(response.data)
+            setBoards(response.data);
         });
-
-
     }, []);
 
 
@@ -30,25 +29,28 @@ export default function UserList() {
         setBoards(boards.filter(board => board.id !== id));
     }
 
-    return (
-        <div>
-            <Navbar/>
-            <div className="text-center" style={style.bg}>
-                <table className="table table-hover table-borderless container">
-                    <thead className="thead-dark">
-                    <tr>
-                        <th scope="col">Доска</th>
-                        <th scope="col">Удалить</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {boards.map(board => {
-                        return <BoardListItem board={board} key={board.id} deleteButtonHandler={deleteBoard}/>
-                    })}
-                    </tbody>
-                </table>
+    if (localStorage.getItem("token") === null) {
+        return <Redirect from="/" to="/signIn"/>
+    } else if (localStorage.getItem("token") !== null) {
+        return (
+            <div>
+                <Navbar user={localStorage.getItem("currentUser")}  boards={boards}/>
+                <div className="text-center" style={style.bg}>
+                    <table className="table table-hover table-borderless container">
+                        <thead className="thead-dark">
+                        <tr>
+                            <th scope="col">Доска</th>
+                            <th scope="col">Удалить</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {boards.map(board => {
+                            return <BoardListItem board={board} key={board.id} deleteButtonHandler={deleteBoard}/>
+                        })}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-
-    )
+        )
+    }
 }

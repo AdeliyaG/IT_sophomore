@@ -4,17 +4,16 @@ package sample.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import sample.protocol.SocketClient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static javafx.scene.Cursor.HAND;
-
 public class GameController {
     StageController stageController = new StageController();
     SocketClient client = new SocketClient();
-    Button[][] buttons;
+    ButtonCheck[][] buttons;
 
     @FXML
     private ResourceBundle resources;
@@ -30,20 +29,13 @@ public class GameController {
 
     @FXML
     void initialize() {
-        int initX = 27;
-        int initY = 28;
-        int range = 40;
+        String color = "#42aaff";
 
-        buttons = new Button[11][11];
+        buttons = new ButtonCheck[11][11];
 
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
-                Button button = new Button();
-                button.setLayoutX(initX + range * i);
-                button.setLayoutY(initY + range * j);
-                button.setText("   ");
-                button.setStyle("-fx-background-color: invisible;");
-                button.setCursor(HAND);
+                ButtonCheck button = new ButtonCheck(i, j, color);
                 buttons[i][j] = button;
 
                 button.setOnAction(event -> {
@@ -52,20 +44,15 @@ public class GameController {
 
                     // отправить сообщение на сервер
 
-                    String color = "#42aaff";
-                    button.setStyle("-fx-background-color: " + color + "; -fx-background-radius: 30px;");
+                    ((ButtonCheck) event.getTarget()).setInvisible(false);
 
-                    //потом передаем ход сопернику бат хау
+                    //потом передаем ход сопернику
 
-//                    String buttonStyle = button.getStyle().replace("-fx-background-color: ", "");
-//
-                    check(buttonX, buttonY, button, color);
                 });
 
                 gameField.getChildren().add(button);
             }
         }
-
 
         stageController.stageControllerLogic(quitButton, "mainWindow");
     }
@@ -80,15 +67,13 @@ public class GameController {
         }
     }
 
-    public int check(int x, int y, Button button, String color) {
-        int range = 40;
-
-        button.setLayoutX(x + range);
-
-        //horizontal
-        if ((x + range & x + range * 2) ==) {
-
-
-        }
+    public void check(ButtonCheck[][] buttons) {
+//        for (int i = 0; i < ; i++) {
+//            for (int j = 0; j < ; j++) {
+//
+//            }
+//
+//
+//        }
     }
 }

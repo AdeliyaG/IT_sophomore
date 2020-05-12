@@ -78,4 +78,10 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    public void unarchiveItem(Long item_id) {
+        Item item = itemRepository.findItemById(item_id);
+        item.setItemStatus(ItemStatus.OPENED);
+        itemRepository.save(item);
+    }
+
 }

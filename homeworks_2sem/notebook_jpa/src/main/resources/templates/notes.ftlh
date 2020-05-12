@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/skeleton.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <title>Notebook</title>
 </head>
 <body>
@@ -26,6 +27,7 @@
             <tr>
                 <th>Name</th>
                 <th>Number</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>

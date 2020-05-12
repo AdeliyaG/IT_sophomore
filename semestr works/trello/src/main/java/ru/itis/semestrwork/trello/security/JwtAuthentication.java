@@ -8,6 +8,7 @@ import java.util.Collection;
 
 public class JwtAuthentication implements Authentication {
 
+    private boolean isAuthenticated = false;
     private String token;
     private UserDetails userDetails;
 
@@ -17,7 +18,7 @@ public class JwtAuthentication implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return userDetails.getAuthorities();
     }
 
     @Override
@@ -27,7 +28,7 @@ public class JwtAuthentication implements Authentication {
 
     @Override
     public Object getDetails() {
-        return null;
+        return userDetails;
     }
 
     @Override
@@ -37,12 +38,12 @@ public class JwtAuthentication implements Authentication {
 
     @Override
     public boolean isAuthenticated() {
-        return true;
+        return isAuthenticated;
     }
 
     @Override
     public void setAuthenticated(boolean b) throws IllegalArgumentException {
-
+        this.isAuthenticated = isAuthenticated;
     }
 
     @Override

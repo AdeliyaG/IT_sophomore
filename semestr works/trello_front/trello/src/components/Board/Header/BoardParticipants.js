@@ -1,27 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import BoardParticipantsList from "./BoardParticipantsList";
 import BoardParticipantAdd from "./BoardParticipantAdd";
+import api from "../../../axios/api-auth";
 
-export default function BoardParticipants() {
-    const [participants, setParticipants] = useState([
-        {id: 1, username: "user1", email: "user1@mail.ru"},
-        {id: 2, username: "user2", email: "user2@mail.ru"}
-    ]);
-
-    function addParticipants(email) {
-        // find user by email
-        let id = Date.now();
-        let elem = {
-            id: id,
-            username: "user.getUsername",
-            email: email,
-        };
-        setParticipants(participants.concat([elem]));
-    }
-
-    function deleteParticipants(id) {
-        setParticipants(participants.filter(participant => participant.id !== id));
-    }
+export default function BoardParticipants({participants}) {
 
     return (
         <div>
@@ -32,8 +14,9 @@ export default function BoardParticipants() {
                 </button>
             </div>
             <div className="modal-body">
-                <BoardParticipantAdd addParticipants={addParticipants} />
-                <BoardParticipantsList participants={participants} deleteParticipants={deleteParticipants}/>
+                {/*<BoardParticipantAdd addParticipants={addParticipants} />*/}
+                {/*<BoardParticipantsList participants={participants} deleteParticipants={deleteParticipants}/>*/}
+                <BoardParticipantsList participants={participants}/>
             </div>
             <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Закрыть</button>

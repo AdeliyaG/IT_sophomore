@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=M7jn7wdp"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" action="/">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <h3>Text reader</h3>
+        </div>
+        <div class="row justify-content-center mt-2">
+            <input class="form-control col-3 mr-2" type="text" name="text" id="text">
+            <select class="form-control col-3" id="voice">
+                <option value="Russian Male">Russian Male</option>
+                <option value="Russian Female">Russian Female</option>
+                <option value="Italian Male">Italian Male</option>
+                <option value="Italian Female">Italian Female</option>
+                <option value="French Male">French Male</option>
+                <option value="French Female">French Female</option>
+                <option value="UK English Female">UK English Female</option>
+                <option value="UK English Male">UK English Male</option>
+            </select>
+        </div>
+
+        <div class="row justify-content-center ml-3 mt-3">
+            <p>Rate:  <input class="form-control-range col-9" type="range" min="0" max="2" step="0.1"  value="1" id="rate" oninput="numRate.innerHTML = rate.value"> <a id="numRate">1</a></p>
+            <p>Pitch:  <input class="form-control-range col-9" type="range" min="0.1" max="2" step="0.1" value="1" id="pitch" oninput="numPitch.innerHTML = pitch.value"> <a id="numPitch">1</a></p>
+            <p>Volume:  <input class="form-control-range col-9" type="range" min="0" max="2" step="0.1" value="1" id="volume" oninput="numVol.innerHTML = volume.value"> <a id="numVol">1</a></p>
+        </div>
+
+        <div class="row justify-content-center">
+            <input class="btn btn-primary mr-2" type="button" name="Voice" value="Voice" onclick=get()>
+            <input class="btn btn-light" type="button" name="Send" value="Send">
+        </div>
+    </div>
+</form>
+
+
+</body>
+</html>
+<script>
+    var text = document.getElementById("text");
+    var voice = document.getElementById("voice");
+    var rate = document.getElementById("rate");
+    var pitch = document.getElementById("pitch");
+    var volume = document.getElementById("volume");
+
+    function get() {
+        responsiveVoice.speak(text.value, voice.value, {
+            rate: rate.value,
+            pitch: pitch.value,
+            volume: volume.value
+        })
+    }
+
+</script>
