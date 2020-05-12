@@ -46,13 +46,13 @@ public class ItemController {
         return ResponseEntity.ok("User deleted from card");
     }
 
-    @PutMapping("/item={item_id}/archive")                  //todo подумать как выводить в карточке только открытые итемы
+    @PutMapping("/item={item_id}/archive")
     public ResponseEntity<?> archiveItem(@PathVariable Long item_id) {
         itemService.archiveItem(item_id);
         return ResponseEntity.ok("Archived");
     }
 
-    @PutMapping("/item={item_id}/unarchive")                  //todo подумать как выводить в карточке только открытые итемы
+    @PutMapping("/item={item_id}/unarchive")
     public ResponseEntity<?> unarchiveItem(@PathVariable Long item_id) {
         itemService.unarchiveItem(item_id);
         return ResponseEntity.ok("Unarchived");

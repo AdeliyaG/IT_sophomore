@@ -30,7 +30,7 @@ public class CardService {
     }
 
     @Transactional
-    public List<Card> createCard(CardDto cardDto, Long board_id) {
+    public Card createCard(CardDto cardDto, Long board_id) {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userRepository.findUserById(userDetails.getUserId());
 
@@ -43,7 +43,8 @@ public class CardService {
                     .build();
 
             cardRepository.save(card);
-            return boardRepository.findBoardById(board_id).getCards();
+            return card;
+//            return boardRepository.findBoardById(board_id).getCards();
         } else throw new AccessDeniedException("Unavailable operation");
     }
 

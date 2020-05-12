@@ -36,7 +36,6 @@ export default function Navbar({user, boards}) {
                         {user}
                     </button>
                     <div className="dropdown-menu dropdown-menu-right mt-2" aria-labelledby="navbarDropdown">
-                        <a className="dropdown-item" href="/profile">Профиль</a>
                         <a className="dropdown-item" href="/">Список досок</a>
                         <div className="dropdown-divider"></div>
                         <a className="dropdown-item" href="/logout" onClick={()=> localStorage.clear()}>Выйти</a>

@@ -2,6 +2,10 @@ import React, {useEffect, useState} from 'react';
 import BoardHeader from "./BoardHeader";
 import Navbar from "../NavbarAuth/Navbar";
 import api from "../../axios/api-auth";
+import Card from "../Card/Сard";
+import AddBoardButton from "../NavbarAuth/AddBoardButton";
+import Context from "../../context";
+import AddCardButton from "./AddCardButton";
 
 
 const style = {
@@ -18,46 +22,58 @@ const style = {
 
     card: {
         flexWrap: "none",
+    },
+
+    btn: {
+        minWidth: 300 + "px"
     }
-}
+};
 
 export default function Board(props) {
+    const [boards, setBoards] = useState([]); // for navbar
 
     const [board, setBoard] = useState([]);
+    const [cards, setCards] = useState([]);
 
     useEffect(() => {
         api.get("/board" + props.location.search).then((response) => {
             setBoard(response.data);
+            setCards(response.data.cards);
         });
     }, []);
 
+    useEffect(() => {
+        api.get("/").then((response) => {
+            setBoards(response.data);
+        });
+    }, [board]);
+
+    function addNewCard(name) {
+        api.post("/board=" + board.id + "/addCard", {
+            title: name
+        }).then((response) => {
+            if (response.status !== 200) {
+                alert("Bad response")
+            }
+        });
+    }
+
     return (
-        <>
-            <Navbar user={localStorage.getItem("currentUser")}/>
+        <Context.Provider value={{addNewCard}}>
+            <Navbar user={localStorage.getItem("currentUser")} boards={boards}/>
             <div className="overflow-auto" style={style.bg}>
                 <BoardHeader board={board}/>
                 <div className="container-fluid flex-nowrap">
                     <div id="cardContainer" className="row flex-nowrap ml-2" style={style.card}>
-                        {/*{board.map((card) =>*/}
-                        {/*    <Card card={card} key={card.id}/>)}*/}
 
-                        <button className="btn btn-outline-primary w-25 h-25 mt-1">Добавить колонку
-                            +
-                        </button>
+                        {cards.map((card) =>
+                            <Card card={card} key={card.id}/>)
+                        }
 
-                        {/*onClick={addNewCard}*/}
+                        <AddCardButton/>
                     </div>
                 </div>
             </div>
-        </>
+        </Context.Provider>
     )
-
-    // function addNewCard() {
-    //     let newCard = {
-    //         id: Date.now(),
-    //         name: "newName"
-    //     };
-    //     setCards(cards.concat(newCard))
-    // }
-
 }

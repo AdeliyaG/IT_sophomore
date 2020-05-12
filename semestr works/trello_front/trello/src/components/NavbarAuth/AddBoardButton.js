@@ -1,9 +1,30 @@
 import React, {useState} from 'react';
+import api from "../../axios/api-auth";
 
 export default function AddBoardButton() {
+    const [newBoardTitle, setNewBoardTitle] = useState("");
+
+    function submitHandler(event) {
+        event.preventDefault();
+
+        api.post("/createBoard", {
+            name: newBoardTitle,
+        }).then((response) => {
+            if (response.status === 200) {
+                window.location = "/board?b=" + response.data.id
+            } else {
+                alert("Bad response")
+            }
+        });
+
+        setNewBoardTitle("")
+    }
+
     return (
         <div>
-            <button name="addBoard" className="btn btn-outline-primary ml-2" data-toggle="modal" data-target="#addBoard">+</button>
+            <button name="addBoard" className="btn btn-outline-primary ml-2" data-toggle="modal"
+                    data-target="#addBoard">+
+            </button>
 
             <div className="modal fade" id="addBoard" tabIndex="-1" role="dialog"
                  aria-labelledby="modalLabel" aria-hidden="true">
@@ -15,17 +36,23 @@ export default function AddBoardButton() {
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div className="modal-body">
-                            <form>
+
+                        <form onSubmit={submitHandler}>
+                            <div className="modal-body">
                                 <div className="form-group">
-                                    <label htmlFor="boardName" className="col-form-label">Введите название доски:</label>
-                                    <input type="text" className="form-control" id="boardName"/>
+                                    <label htmlFor="boardName" className="col-form-label">Введите название
+                                        доски:</label>
+                                    <input type="text" className="form-control" id="boardName"
+                                           value={newBoardTitle}
+                                           onChange={event => setNewBoardTitle(event.target.value)}
+                                    />
                                 </div>
-                            </form>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-primary">Создать</button>
-                        </div>
+                            </div>
+                            <div className="modal-footer">
+                                <button type="submit" className="btn btn-primary">Создать</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>

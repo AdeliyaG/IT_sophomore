@@ -22,11 +22,16 @@ export default function UserList() {
         api.get("/").then((response) => {
             setBoards(response.data);
         });
-    }, []);
+    }, [boards]);
 
 
     function deleteBoard(id) {
-        setBoards(boards.filter(board => board.id !== id));
+        api.delete("/board=" + id + "/delete")
+            .then((response) => {
+            if (response.status !== 200) {
+                alert("Bad response")
+            }
+        })
     }
 
     if (localStorage.getItem("token") === null) {
@@ -34,7 +39,7 @@ export default function UserList() {
     } else if (localStorage.getItem("token") !== null) {
         return (
             <div>
-                <Navbar user={localStorage.getItem("currentUser")}  boards={boards}/>
+                <Navbar user={localStorage.getItem("currentUser")} boards={boards}/>
                 <div className="text-center" style={style.bg}>
                     <table className="table table-hover table-borderless container">
                         <thead className="thead-dark">

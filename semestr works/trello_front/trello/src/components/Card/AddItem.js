@@ -7,7 +7,8 @@ export default function AddItem({setClick}) {
 
     function clickHandler(name) {
         setClick();
-        saveItem(name)
+        saveItem(name);
+        setName("")
     }
 
     return (

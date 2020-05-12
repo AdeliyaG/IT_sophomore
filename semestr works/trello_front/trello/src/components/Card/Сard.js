@@ -1,46 +1,42 @@
 import React, {useState} from 'react';
-import CardList from "./CardList"
 import CardHeader from "./CardHeader"
 import CardItem from "./CardItem";
 import CardFooter from "./CardFooter";
 
 import Context from "../../context";
+import api from "../../axios/api-auth";
+import CardList from "./CardList";
 
 const style = {
     card: {
-        minWidth: 300 + "px"
+        minWidth: 300 + "px",
+        height: "auto",
+        alignSelf: "start"
     }
 };
 
 export default function Card({card}) {
 
-    const [cardItems, setCardItems] = useState([
-        {id: 1, name: "Item"},
-        {id: 2, name: "Item2"},
-        {id: 3, name: "Item3"}
-    ]);
+    const [cardItems, setCardItems] = useState(card.items.filter(item => item.itemStatus === "OPENED"));
 
     function saveItem(name) {
-        if (name.trim()) {
-            let elem = {
-                id: Date.now(),
-                name: name
-            };
-            setCardItems(cardItems.concat([elem]));
-        }
+        api.post("/card="+card.id, {
+            title: name
+        }).then((response) => {
+            if (response.status === 200) {
+                setCardItems(cardItems.concat(response.data));
+            } else {
+                alert("Bad response")
+            }
+        });
     }
 
 
     return (
         <Context.Provider value={{ saveItem }}>
             <div id="draggable-revert" className="card border-light mt-1 mw-25 mr-3 shadow" style={style.card}>
-                <CardHeader name={card.name}/>
-                <CardList cardItems={cardItems}>
-                    <div className="card-body " style={style.scroll}>
-                        {cardItems.map((item) =>
-                            <CardItem item={item} key={item.id}/>)}
-                    </div>
-                </CardList>
+                <CardHeader name={card.title}/>
+                <CardList cardItems={cardItems}/>
                 <CardFooter/>
             </div>
         </Context.Provider>

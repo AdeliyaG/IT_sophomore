@@ -6,7 +6,7 @@ const style = {
         maxHeight: 310 + "px",
         overflowY: "auto"
     }
-}
+};
 
 export default function CardList({cardItems}) {
     return (
@@ -14,7 +14,6 @@ export default function CardList({cardItems}) {
             {cardItems.map(item => {
                 return <CardItem item={item} key={item.id}/>
             })}
-            {/*{provided.placeholder}*/}
         </div>
     )
 

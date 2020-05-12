@@ -19,7 +19,7 @@ public class CardController {
 //        return ResponseEntity.ok(itemService.createItem(itemCreateDto, card_id));
 //    }
 
-    @PostMapping("/board={board_id}/addCard") //должно быть так: /board?b={board_id}/addCard
+    @PostMapping("/board={board_id}/addCard")
     private ResponseEntity<?> createCard(@PathVariable Long board_id, @RequestBody CardDto cardDto) {
         return ResponseEntity.ok(cardService.createCard(cardDto, board_id));
     }
@@ -31,6 +31,5 @@ public class CardController {
 //        return ResponseEntity.ok("Card " + card_id + " deleted");
 //    }
 
-    //todo renameCard,
-    //todo probably deleteCard
+    //todo renameCard, deleteCard (insane)
 }

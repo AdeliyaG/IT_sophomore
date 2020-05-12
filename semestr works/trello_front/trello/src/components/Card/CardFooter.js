@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import AddItem from "./AddItem";
 
 export default function CardFooter(props) {
-
-    const buttonRef = React.createRef();
-
     const [isUserClickedAddButton, setClick] = useState(false);
 
     function handler() {
@@ -20,7 +17,7 @@ export default function CardFooter(props) {
     } else {
         return (
             <div className="card-footer">
-                <button className="btn btn-light w-100 text-muted" ref={buttonRef} onClick={()=> handler()}>
+                <button className="btn btn-light w-100 text-muted" onClick={()=> handler()}>
                     Добавить карточку +
                 </button>
             </div>
