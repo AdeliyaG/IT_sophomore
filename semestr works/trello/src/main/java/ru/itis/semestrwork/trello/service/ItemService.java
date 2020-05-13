@@ -1,6 +1,7 @@
 package ru.itis.semestrwork.trello.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.itis.semestrwork.trello.dto.UserDto;
 import ru.itis.semestrwork.trello.entity.*;
 import ru.itis.semestrwork.trello.repository.CardRepository;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
+@Transactional
 public class ItemService {
 
     private final ItemRepository itemRepository;

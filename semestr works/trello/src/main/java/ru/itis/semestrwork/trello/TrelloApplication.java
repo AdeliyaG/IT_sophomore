@@ -14,7 +14,6 @@ public class TrelloApplication {
         return new BCryptPasswordEncoder();
     }
 
-
     public static void main(String[] args) {
         SpringApplication.run(TrelloApplication.class, args);
     }

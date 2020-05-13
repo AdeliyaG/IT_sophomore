@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
+import Context from "../../../context";
 
 
 const styles = {
@@ -8,22 +9,24 @@ const styles = {
 
 };
 
-export default function BoardParticipantAdd({addParticipants}) {
-
-    const [email, setEmail] = useState('');
+export default function BoardParticipantAdd() {
+    const {addParticipants} = useContext(Context);
+    const [username, setUsername] = useState('');
 
     function submitHandler(event) {
-        if (email.trim()) {
-            addParticipants(email);
+        if (username.trim()) {
+            addParticipants(username);
         }
         event.preventDefault();
-        setEmail('')
+        setUsername('')
     }
 
     return (
         <div className="row form-inline justify-content-center pb-3">
                 <form onSubmit={submitHandler}>
-                    <input onChange={event => setEmail(event.target.value)} value={email} className="form-control" name="email" type="email" placeholder="Email" style={styles.input}/>
+                    <input onChange={event => setUsername(event.target.value)} value={username}
+                           className="form-control" placeholder="Username"
+                           style={styles.input}/>
                     <button className="btn btn-primary" type="submit">Добавить</button>
                 </form>
         </div>

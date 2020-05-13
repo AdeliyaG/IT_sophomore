@@ -23,6 +23,8 @@ export default function SignUp(props) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const [validation, setValidation] = useState([]);
+
     function submitHandler(event) {
         event.preventDefault();
 
@@ -31,16 +33,8 @@ export default function SignUp(props) {
             email: email,
             password: password
         }).then((response) => {
-            if (response.status === 200) {
-               window.location = "/signIn"
-            } else {
-                alert("Bad response")
-            }
-        });
-
-        setUsername('');
-        setEmail('');
-        setPassword('');
+            window.location = "/signIn"
+        }).catch(error => setValidation(error.response.data));
     }
 
     return (
@@ -53,28 +47,34 @@ export default function SignUp(props) {
                             <label htmlFor="loginInput" className="col-form-label font-weight-bold">Имя
                                 пользователя</label>
                             <input type="text" className="form-control shadow-lg" id="loginInput"
-                                   placeholder="Login" required
+                                   placeholder="Login"
                                    value={username}
                                    onChange={event => setUsername(event.target.value)}
                             />
+                            <small id="passwordHelpBlock" className="form-text text-center text-danger">
+                                {validation.username}
+                            </small>
 
                             <label htmlFor="loginInput" className="col-form-label font-weight-bold">Email</label>
                             <input type="email" className="form-control shadow-lg" id="loginInput"
-                                   placeholder="Email" required
+                                   placeholder="Email"
                                    value={email}
                                    onChange={event => setEmail(event.target.value)}
                             />
+                            <small id="passwordHelpBlock" className="form-text text-center text-danger">
+                                {validation.email}
+                            </small>
 
                             <label htmlFor="passwordInput"
                                    className="col-form-label font-weight-bold">Пароль</label>
                             <input type="password" className="form-control shadow-lg" id="passwordInput"
-                                   placeholder="Password" required
+                                   placeholder="Password"
                                    value={password}
                                    onChange={event => setPassword(event.target.value)}
                             />
 
-                            <small id="passwordHelpBlock" className="form-text text-center">
-                                Пароль должен содержать не менее 8 символов, цифры и заглавные буквы.
+                            <small id="passwordHelpBlock" className="form-text text-center text-danger">
+                                {validation.password}
                             </small>
                         </div>
 

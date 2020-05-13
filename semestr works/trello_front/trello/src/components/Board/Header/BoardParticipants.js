@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import BoardParticipantsList from "./BoardParticipantsList";
 import BoardParticipantAdd from "./BoardParticipantAdd";
-import api from "../../../axios/api-auth";
 
 export default function BoardParticipants({participants}) {
 
@@ -14,8 +13,7 @@ export default function BoardParticipants({participants}) {
                 </button>
             </div>
             <div className="modal-body">
-                {/*<BoardParticipantAdd addParticipants={addParticipants} />*/}
-                {/*<BoardParticipantsList participants={participants} deleteParticipants={deleteParticipants}/>*/}
+                <BoardParticipantAdd />
                 <BoardParticipantsList participants={participants}/>
             </div>
             <div className="modal-footer">

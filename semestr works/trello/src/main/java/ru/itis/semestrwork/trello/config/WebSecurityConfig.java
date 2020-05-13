@@ -36,8 +36,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/api/trello/signUp").permitAll()
                 .antMatchers("/api/trello/signIn").permitAll()
+                .antMatchers("/api/trello/signInWithFacebook").permitAll()
                 .antMatchers("/api/trello/admin").hasAuthority("ADMIN")
                 .antMatchers("/api/trello/**").authenticated()
+                .antMatchers("/swagger-ui.html**", "/webjars/**", "/swagger-resources/**", "/v2/api-docs/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout().permitAll();
@@ -47,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/api/trello/signIn", "/api/trello/signUp");
+        web.ignoring().antMatchers("/api/trello/signIn", "/api/trello/signUp", "/api/trello/signInWithFacebook");
     }
 
     @Autowired

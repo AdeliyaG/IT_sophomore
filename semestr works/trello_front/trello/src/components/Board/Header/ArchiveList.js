@@ -1,7 +1,7 @@
 import React from 'react';
 import ArchivedItem from "./ArchivedItem";
 
-export default function ArchiveList({archive, deleteArchivedItem}) {
+export default function ArchiveList({archive}) {
 
     return (
         <div>

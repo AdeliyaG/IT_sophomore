@@ -22,16 +22,16 @@ export default function UserList() {
         api.get("/").then((response) => {
             setBoards(response.data);
         });
-    }, [boards]);
+    }, []);
 
 
     function deleteBoard(id) {
         api.delete("/board=" + id + "/delete")
             .then((response) => {
-            if (response.status !== 200) {
-                alert("Bad response")
-            }
-        })
+                if (response.status !== 200) {
+                    alert("Bad response")
+                }
+            })
     }
 
     if (localStorage.getItem("token") === null) {

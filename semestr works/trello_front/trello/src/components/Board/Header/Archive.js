@@ -14,7 +14,6 @@ export default function Archive({archive}) {
             </div>
             <div className="modal-body">
                 <ArchiveList archive={archive.filter(item => item.itemStatus !== "OPENED")}/>
-                             {/*// deleteArchivedItem={deleteArchivedItem}/>*/}
             </div>
             <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Закрыть</button>

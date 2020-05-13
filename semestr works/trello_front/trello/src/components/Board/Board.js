@@ -46,7 +46,7 @@ export default function Board(props) {
         api.get("/").then((response) => {
             setBoards(response.data);
         });
-    }, [board]);
+    }, []);
 
     function addNewCard(name) {
         api.post("/board=" + board.id + "/addCard", {

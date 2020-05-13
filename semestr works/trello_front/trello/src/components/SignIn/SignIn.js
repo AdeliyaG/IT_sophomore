@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import NavbarAnon from "../NavbarAnon/NavbarAnon";
 import api from "../../axios/api-anon";
 import {Redirect} from "react-router-dom";
+import FacebookSignIn from "./FacebookSignIn";
 
 const style = {
     bg: {
@@ -24,6 +25,8 @@ export default function SignIn() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const [validation, setValidation] = useState([]);
+
     function submitHandler(event) {
         event.preventDefault();
 
@@ -31,19 +34,15 @@ export default function SignIn() {
             username: username,
             password: password
         }).then((response) => {
-            if (response.status === 200) {
-                localStorage.setItem("token", response.data.token);
-                localStorage.setItem("currentUser", username);
-                if (response.data.role === "USER") {
-                    window.location = "/"
-                } else if(response.data.role === "ADMIN") {
-                    localStorage.setItem("role", response.data.role);
-                    window.location = "/admin"
-                }
-            } else {
-                alert("Bad response")
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("currentUser", username);
+            if (response.data.role === "USER") {
+                window.location = "/"
+            } else if (response.data.role === "ADMIN") {
+                localStorage.setItem("role", response.data.role);
+                window.location = "/admin"
             }
-        });
+        }).catch(error => setValidation(error.response.data));
 
         setUsername('');
         setPassword('');
@@ -66,6 +65,9 @@ export default function SignIn() {
                                        value={username}
                                        onChange={event => setUsername(event.target.value)}
                                 />
+                                <small id="passwordHelpBlock" className="form-text text-center text-info">
+                                    {validation.username}
+                                </small>
                             </div>
 
                             <div className="form-group" style={style.input}>
@@ -76,11 +78,17 @@ export default function SignIn() {
                                        value={password}
                                        onChange={event => setPassword(event.target.value)}
                                 />
+                                <small id="passwordHelpBlock" className="form-text text-center text-info">
+                                    {validation.password}
+                                </small>
                             </div>
                             <div className="form-group row text-center" style={style.input}>
                                 <div className="col-9">
-                                    <button type="submit" className="btn btn-primary shadow-lg">Войти через facebook
-                                    </button>
+                                    {/*<a type="submit" className="btn btn-primary shadow-lg">*/}
+                                    {/*    Войти через facebook*/}
+                                    {/*</a>*/}
+                                    <FacebookSignIn/>
+
                                 </div>
                                 <div className="col-3 p-0">
                                     <button type="submit"

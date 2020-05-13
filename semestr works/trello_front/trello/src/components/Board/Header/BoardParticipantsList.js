@@ -1,7 +1,7 @@
 import React from 'react';
 import Participant from "./Participant";
 
-export default function BoardParticipantsList({participants, deleteParticipants}) {
+export default function BoardParticipantsList({participants}) {
 
     return (
         <div>

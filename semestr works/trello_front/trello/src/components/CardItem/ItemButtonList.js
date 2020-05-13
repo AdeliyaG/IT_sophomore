@@ -8,8 +8,6 @@ export default function ItemButtonList() {
     const {setShowFileAdd} = useContext(Context);
     const {showFileAdd} = useContext(Context);
 
-
-
     return (
         <div>
             <div className="btn-group-vertical">
@@ -23,7 +21,7 @@ export default function ItemButtonList() {
                 </button>
                 <button type="button" className="btn btn-outline-primary">Срок</button>
                 <button type="button" className="btn btn-outline-primary">Чек-лист</button>
-                <button type="button" className="btn btn-outline-primary">Чат</button>
+                {/*<button type="button" className="btn btn-outline-primary">Чат</button>*/}
                 <button type="button" className="btn btn-outline-secondary">Архивация</button>
             </div>
         </div>

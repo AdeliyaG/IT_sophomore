@@ -1,6 +1,7 @@
 package ru.itis.semestrwork.trello.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Table(name = "comment")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
